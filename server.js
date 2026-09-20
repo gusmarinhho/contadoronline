@@ -10,7 +10,16 @@ app.use(express.json({ limit: '20mb' }));
 app.use(cors());
 
 // Serve os arquivos estáticos da pasta do projeto (HTML, CSS, JS do frontend)
-app.use(express.static(__dirname));
+// HTML nunca é cacheado para o usuário sempre ver a versão mais recente
+app.use(express.static(__dirname, {
+    setHeaders: (res, path) => {
+        if (path.endsWith('.html')) {
+            res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+            res.setHeader('Pragma', 'no-cache');
+            res.setHeader('Expires', '0');
+        }
+    }
+}));
 
 // Configuração do Banco de Dados PostgreSQL
 const pool = new Pool({

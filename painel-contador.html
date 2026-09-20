@@ -468,6 +468,11 @@ async function api(url, opts = {}) {
     const res = await fetch(url, { ...opts, headers });
     const text = await res.text();
     let data; try { data = JSON.parse(text); } catch { data = { erro: 'Erro no servidor.' }; }
+    if (res.status === 401) {
+        localStorage.clear();
+        window.location.href = 'contador-login.html';
+        return;
+    }
     if (!res.ok) throw new Error(data.erro || 'Erro');
     return data;
 }
