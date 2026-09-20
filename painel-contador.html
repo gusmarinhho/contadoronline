@@ -429,6 +429,17 @@ if (!token || token === 'null') {
     window.location.href = 'contador-login.html';
 }
 
+// Valida o token no servidor antes de mostrar o painel
+(async () => {
+    try {
+        const resp = await fetch('/api/dashboard/stats', { headers: { 'Authorization': `Bearer ${token}` } });
+        if (resp.status === 401) throw new Error('Token inválido');
+    } catch (e) {
+        localStorage.clear();
+        window.location.href = 'contador-login.html';
+    }
+})();
+
 document.getElementById('topbar-nome').textContent = nomeEscritorio || 'Contador';
 document.getElementById('sidebar-escritorio').textContent = nomeEscritorio || 'Escritório';
 if (isAdmin) {

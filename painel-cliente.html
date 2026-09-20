@@ -212,6 +212,17 @@ if (!token || !empresa || !empresa.cnpj) {
     window.location.href = 'cliente.html';
 }
 
+// Valida o token no servidor antes de mostrar o painel
+(async () => {
+    try {
+        const resp = await fetch('/api/chat/cliente', { headers: { 'Authorization': `Bearer ${token}` } });
+        if (resp.status === 401) throw new Error('Token inválido');
+    } catch (e) {
+        localStorage.clear();
+        window.location.href = 'cliente.html';
+    }
+})();
+
 document.getElementById('topbar-nome').textContent = empresa.razaoSocial || 'Cliente';
 document.getElementById('topbar-cnpj').textContent = 'CNPJ: ' + formatarCNPJ(empresa.cnpj);
 document.getElementById('sidebar-empresa').textContent = (empresa.razaoSocial || 'Empresa').substring(0, 22);
