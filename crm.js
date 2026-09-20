@@ -8,10 +8,10 @@
 
     // ---- Etapas do funil ----
     const ETAPAS = [
-        { status: 'novo',       label: 'Novo',       color: '#a78bfa', glow: 'rgba(167,139,250,0.25)' },
-        { status: 'contatado',  label: 'Em Contato', color: '#60a5fa', glow: 'rgba(96,165,250,0.25)' },
+        { status: 'novo',       label: 'Novo',       color: '#8b5cf6', glow: 'rgba(139,92,246,0.25)' },
+        { status: 'contatado',  label: 'Em Contato', color: '#3b82f6', glow: 'rgba(59,130,246,0.25)' },
         { status: 'negociando', label: 'Proposta',   color: '#fbbf24', glow: 'rgba(251,191,36,0.25)' },
-        { status: 'ganho',      label: 'Fechado',   color: '#4ade80', glow: 'rgba(74,222,128,0.25)' },
+        { status: 'ganho',      label: 'Fechado',   color: '#00e676', glow: 'rgba(0,230,118,0.25)' },
         { status: 'perdido',    label: 'Perdido',    color: '#f87171', glow: 'rgba(248,113,113,0.25)' }
     ];
 
@@ -40,35 +40,23 @@
         /* CRM — Funil de Vendas */
         .crm-topo { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin-bottom: 24px; }
         .crm-card-stat {
-            background: linear-gradient(135deg, rgba(59,130,246,0.08), rgba(111,66,193,0.06));
-            border: 1px solid rgba(59,130,246,0.2);
-            border-radius: 16px;
+            background: #111214;
+            border: 1px solid #1f2227;
+            border-radius: 14px;
             padding: 20px 22px;
             position: relative;
             overflow: hidden;
-            transition: transform 0.2s, box-shadow 0.2s;
+            transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
         }
-        .crm-card-stat::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--accent-blue, #3b82f6), transparent);
-            opacity: 0.6;
-        }
-        .crm-card-stat:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(59,130,246,0.15); }
-        .crm-card-stat-label { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--text-secondary, #a0a5b1); margin-bottom: 8px; }
-        .crm-card-stat-value { font-size: 32px; font-weight: 800; color: var(--text-primary, #fff); line-height: 1; }
-        .crm-card-stat-icon { position: absolute; top: 16px; right: 18px; width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; }
-        .crm-card-stat-icon i { width: 18px; height: 18px; }
-        .crm-card-stat.total .crm-card-stat-icon { background: rgba(59,130,246,0.15); color: #60a5fa; }
-        .crm-card-stat.leads .crm-card-stat-icon { background: rgba(167,139,250,0.15); color: #a78bfa; }
-        .crm-card-stat.clientes .crm-card-stat-icon { background: rgba(74,222,128,0.15); color: #4ade80; }
-        .crm-card-stat.fechados .crm-card-stat-icon { background: rgba(34,197,94,0.15); color: #22c55e; }
-        .crm-card-stat.total { border-color: rgba(59,130,246,0.25); }
-        .crm-card-stat.leads { border-color: rgba(167,139,250,0.25); }
-        .crm-card-stat.clientes { border-color: rgba(74,222,128,0.25); }
-        .crm-card-stat.fechados { border-color: rgba(34,197,94,0.25); }
+        .crm-card-stat:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,0,0,0.3); border-color: #2a2e35; }
+        .crm-card-stat-label { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: #9ca3af; margin-bottom: 8px; }
+        .crm-card-stat-value { font-size: 32px; font-weight: 800; color: #fff; line-height: 1; }
+        .crm-card-stat-icon { position: absolute; top: 16px; right: 18px; width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+        .crm-card-stat-icon i { width: 16px; height: 16px; }
+        .crm-card-stat.total .crm-card-stat-icon { background: rgba(59,130,246,0.12); color: #60a5fa; }
+        .crm-card-stat.leads .crm-card-stat-icon { background: rgba(139,92,246,0.12); color: #a78bfa; }
+        .crm-card-stat.clientes .crm-card-stat-icon { background: rgba(0,230,118,0.12); color: #00e676; }
+        .crm-card-stat.fechados .crm-card-stat-icon { background: rgba(245,158,11,0.12); color: #fbbf24; }
 
         .crm-toolbar { display: flex; gap: 12px; align-items: center; margin-bottom: 20px; flex-wrap: wrap; }
         .crm-search {
@@ -89,13 +77,13 @@
         .crm-search input::placeholder { color: var(--text-muted, #6b7280); }
         .crm-btn-new {
             display: flex; align-items: center; gap: 8px;
-            background: linear-gradient(135deg, #3b82f6, #6f42c1);
-            color: #fff; border: none; border-radius: 12px;
+            background: #8b5cf6;
+            color: #fff; border: none; border-radius: 10px;
             padding: 10px 20px; font-size: 14px; font-weight: 600; cursor: pointer;
-            transition: transform 0.15s, box-shadow 0.2s; white-space: nowrap;
+            transition: transform 0.15s, box-shadow 0.2s, background 0.15s; white-space: nowrap;
             font-family: inherit;
         }
-        .crm-btn-new:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(59,130,246,0.3); }
+        .crm-btn-new:hover { background: #7c3aed; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(139,92,246,0.3); }
         .crm-btn-new i { width: 16px; height: 16px; }
 
         .crm-kanban {
@@ -110,9 +98,9 @@
         }
         .crm-col {
             min-width: 0;
-            background: rgba(26,31,43,0.6);
-            border: 1px solid var(--border-light, #2a3142);
-            border-radius: 16px;
+            background: #111214;
+            border: 1px solid #1f2227;
+            border-radius: 14px;
             display: flex; flex-direction: column;
             transition: border-color 0.2s;
             box-sizing: border-box;
@@ -146,8 +134,8 @@
         .crm-col-empty { text-align: center; color: var(--text-muted, #6b7280); font-size: 12px; padding: 24px 8px; }
 
         .crm-contact-card {
-            background: var(--bg-card, #1a1f2b);
-            border: 1px solid var(--border-light, #2a3142);
+            background: #16181c;
+            border: 1px solid #1f2227;
             border-radius: 12px;
             padding: 14px;
             cursor: grab;
@@ -157,7 +145,7 @@
             min-width: 0;
             box-sizing: border-box;
         }
-        .crm-contact-card:hover { border-color: var(--accent-blue, #3b82f6); box-shadow: 0 4px 16px rgba(0,0,0,0.2); }
+        .crm-contact-card:hover { border-color: #2a2e35; box-shadow: 0 4px 16px rgba(0,0,0,0.3); }
         .crm-contact-card.dragging { opacity: 0.35; cursor: grabbing; }
         .crm-contact-name { font-size: 14px; font-weight: 600; color: var(--text-primary, #fff); margin-bottom: 6px; word-break: break-word; overflow-wrap: anywhere; }
         .crm-contact-info { font-size: 12px; color: var(--text-secondary, #a0a5b1); margin-bottom: 3px; display: flex; align-items: center; gap: 6px; min-width: 0; word-break: break-word; overflow-wrap: anywhere; }
